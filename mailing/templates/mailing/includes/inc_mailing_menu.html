@@ -1,0 +1,22 @@
+<div class="col-sm-4 offset-md-1 py-4">
+    <ul class="list-unstyled">
+        <li><a href="{% url 'mailing:home' %}" class="text-white">Главная</a></li>
+        {% if user.is_manager or user.is_superuser%}
+        <li><a href="{% url 'users:user_list' %}" class="text-white">Пользователи</a></li>
+        {% endif %}
+        {% if user.is_authenticated or user.is_superuser%}
+        <li><a href="{% url 'blog:blog_list' %}" class="text-white">Блог</a></li>
+        {% if not user.is_staff or user.is_manager or user.is_superuser %}
+        <li><a href="{% url 'clients:client_list' %}" class="text-white">Клиенты</a></li>
+        <li><a href="{% url 'message:message_list' %}" class="text-white">Сообщения</a></li>
+        <li><a href="{% url 'mailing:mailing_list' %}" class="text-white">Рассылки</a></li>
+        <li><a href="{% url 'mailing:log_list' %}" class="text-white">Статистика</a></li>
+        {% endif %}
+        <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
+        <li><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>
+        {% else %}
+        <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+        <li><a href="{% url 'users:login' %}" class="text-white">Войти</a></li>
+        {% endif %}
+    </ul>
+</div>

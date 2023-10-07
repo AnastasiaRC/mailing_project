@@ -1,0 +1,115 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 mb-5 mx-auto text-center">
+    <h1 class="display-2">Mailing - отправкa рассылок</h1>
+</div>
+<style>
+    .gallery1 { overflow: hidden; width: 720px; }
+    .gallery1 .ramka { float: left; margin-right: 10px; margin-bottom: 10px; width: 250px; height: 250px; overflow: hidden;}
+    .gallery1 img { width: 100% }
+</style>
+<div class="row">
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal text-center">Клиенты</h3>
+            </div>
+            <div class="gallery1">
+                <img class="ramka" src="/media/client.png"/>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'clients:client_list' %}"
+                   class="w-100 btn btn-primary btn-lg btn-outline-success" tabindex="-1" role="button"
+                   aria-disabled="true">Ознакомиться</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal text-center">Рассылки</h3>
+            </div>
+            <div class="gallery1">
+                <img class="ramka" src="/media/mailing.png"/>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'mailing:mailing_list' %}"
+                   class="w-100 btn btn-primary btn-lg btn-outline-success" tabindex="-1" role="button"
+                   aria-disabled="true">Ознакомиться</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal text-center">Сообщение</h3>
+            </div>
+            <div class="gallery1">
+                <img class="ramka" src="/media/message.png"/>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'message:message_list' %}"
+                   class="w-100 btn btn-primary btn-lg btn-outline-success" tabindex="-1" role="button"
+                   aria-disabled="true">Ознакомиться</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal text-center">Статистика</h3>
+            </div>
+            <div class="gallery1">
+                <img class="ramka" src="/media/statistics.png"/>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'mailing:log_list' %}"
+                   class="w-100 btn btn-primary btn-lg btn-outline-success" tabindex="-1" role="button"
+                   aria-disabled="true">Ознакомиться</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+<div class="container">
+    <table class="table text-center" style="font-size:1.5em">
+        <tr>
+            <th scope="col">Созданных рассылок</th>
+            <th scope="col">Рассылок запущено</th>
+            <th scope="col">Уникальных клиентов</th>
+        </tr>
+        <tbody>
+        <tr>
+            <td scope="col">{{ mailing_count }}</td>
+            <td scope="col">{{ mailing_started_count }}</td>
+            <td scope="col">{{ mailing_clients_count }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br><br>
+<div class="pricing-header px-3 mb-5 mx-auto text-center">
+    <h4 class="display-6">Статьи</h4>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for object in blog_list %}
+    <div class="col">
+        <div class="card shadow-sm py-3">
+            <p class="text-center fw-bold">
+                {{ object.title }}
+            </p>
+            <div class="card-body">
+                <p class="card-text">
+                    {{ object.body|slice:":20" }}...
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{% url 'blog:blog_detail' object.pk %}" class="btn btn-outline-success">Подробнее</a>
+                    <small class="text-muted">{{ object.date }} </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}%
