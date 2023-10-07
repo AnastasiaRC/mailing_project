@@ -1,0 +1,19 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Ошибка доступа</h1>
+</div>
+
+<div class="container">
+    <div class="col-12 d-flex justify-content-center">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <p>Не достаточно прав. Добавление новой информации доступно только авторизованным пользователям c соответствующими правами.
+                    <a href="{% url 'users:login' %}">Войдите</a> в личный кабинет пользователя или <a
+                        href="{% url 'users:register' %}">Зарегистрируйтесь</a></p>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

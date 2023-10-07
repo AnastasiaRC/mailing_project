@@ -1,0 +1,33 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">
+        {% if object %}
+        Редактировать
+        {% else %}
+        Добавить контакт
+        {% endif %}
+    </h1>
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
+                    <a href="{% url 'clients:client_list' %}" class="btn btn-warning">Отмена</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p>Добро пожаловать в Mailing!</p>
+    <p>Совершай рассылки одним кликом и получай результат.</p>
+    <p>Для активации вашего аккаунта перейдите по
+    <a href="http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}">
+        ссылке
+    </a></p>
+</div>
+</body>
+</html>

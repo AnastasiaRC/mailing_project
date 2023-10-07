@@ -39,6 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'mailing',
+    'users',
+    'clients',
+    'message',
+    'blog',
+
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -142,6 +150,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/users/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -156,3 +165,6 @@ if CACHE_ENABLED:
         }
     }
 
+CRONJOBS = [
+    ('*/5 * * * *', 'mailing.services.send_mails')
+]
